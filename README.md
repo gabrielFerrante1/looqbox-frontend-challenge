@@ -1,69 +1,109 @@
-# React + TypeScript + Vite
+# Looqbox Frontend Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma solução para o desafio técnico frontend da Looqbox. Ele consiste em uma aplicação React moderna, utilizando TypeScript, Vite, Ant Design, Redux Toolkit, React Query, TailwindCSS e testes automatizados com Vitest e Testing Library.
 
-Currently, two official plugins are available:
+## Vídeo de Demonstração
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Confira o vídeo de demonstração da aplicação clicando na imagem abaixo:
 
-## Expanding the ESLint configuration
+[![Vídeo de Demonstração](https://i.postimg.cc/43bYpCQ0/Captura-de-tela-2025-08-17-011512.png)](https://youtu.be/HCTDbauTnVo)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Índice
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+-   [Sobre o Projeto](#sobre-o-projeto)
+-   [Tecnologias Utilizadas](#tecnologias-utilizadas)
+-   [Como Rodar o Projeto](#como-rodar-o-projeto)
+-   [Scripts Disponíveis](#scripts-disponíveis)
+-   [Estrutura de Pastas](#estrutura-de-pastas)
+-   [Testes](#testes)
+-   [Padrões e Boas Práticas](#padrões-e-boas-práticas)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Sobre o Projeto
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+O objetivo do projeto é listar, filtrar e exibir detalhes de Pokémons consumindo a API pública [PokeAPI](https://pokeapi.co/). O usuário pode favoritar Pokémons, visualizar detalhes, filtrar por tipo, altura e peso, além de navegar por páginas.
+
+## Tecnologias Utilizadas
+
+-   [React 19](https://react.dev/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Vite](https://vitejs.dev/)
+-   [Ant Design](https://ant.design/)
+-   [Redux Toolkit](https://redux-toolkit.js.org/)
+-   [React Query](https://tanstack.com/query/latest)
+-   [TailwindCSS](https://tailwindcss.com/)
+-   [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/)
+
+## Como Rodar o Projeto
+
+1. **Clone o repositório:**
+
+```sh
+git clone <url-do-repo>
+cd looqbox-frontend-challenge
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Instale as dependências:**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+npm install
 ```
+
+3. **Inicie o servidor de desenvolvimento:**
+
+```sh
+npm run dev
+```
+
+O app estará disponível em `http://localhost:5173` (ou porta informada no terminal).
+
+## Scripts Disponíveis
+
+-   `npm run dev` — Inicia o servidor de desenvolvimento
+-   `npm run build` — Gera a build de produção
+-   `npm run preview` — Visualiza a build de produção localmente
+-   `npm run test` — Executa todos os testes automatizados
+-   `npm run test:watch` — Executa os testes em modo watch
+-   `npm run lint` — Executa o linter
+
+## Estrutura de Pastas
+
+```
+├── src
+│   ├── @tests                # Todos os testes automatizados centralizados
+│   │   ├── components
+│   │   ├── hooks
+│   │   └── lib
+│   ├── components            # Componentes React reutilizáveis
+│   ├── hooks                 # Hooks customizados
+│   ├── lib                   # Redux, store, slices, utilitários
+│   ├── services              # Serviços de API
+│   ├── constants             # Constantes globais
+│   ├── @types                # Tipos TypeScript globais
+│   ├── pages                 # Páginas da aplicação
+│   └── router.tsx            # Configuração das rotas da aplicação
+├── public                    # Arquivos estáticos
+├── vite.config.ts            # Configuração do Vite
+├── vitest.config.ts          # Configuração do Vitest 
+└── README.md                 # Este arquivo
+```
+
+## Testes
+
+-   Os testes estão centralizados em `src/@tests` e cobrem componentes, hooks e lógica de estado.
+-   Para rodar os testes:
+    ```sh
+    npm run test
+    ```
+-   Para rodar em modo watch:
+    ```sh
+    npm run test:watch
+    ``` 
+
+## Padrões e Boas Práticas
+
+-   **Componentização:** Componentes pequenos, reutilizáveis e com responsabilidade única.
+-   **Tipagem Estrita:** Uso extensivo de TypeScript para segurança e clareza.
+-   **Gerenciamento de Estado:** Redux Toolkit para favoritos e React Query para dados remotos.
+-   **Estilização:** TailwindCSS para agilidade e consistência visual.
+-   **Testes:** Cobertura de lógica e UI, com mocks para dependências externas.
+-   **Aliases:** Imports com `@/` para facilitar a navegação e manutenção do código.
